@@ -66,7 +66,7 @@ function convertCoordinate(obj) {
                 continue;
             }
             if (e == 'coordinates') {
-                var coords = obj[e].split("\n");
+                var coords = obj[e].split(/\s+/);
                 var ret = [];
                 coords.forEach(f => {
                     var arr = f.split(",");
@@ -74,7 +74,7 @@ function convertCoordinate(obj) {
                     var lat = convertDecimalToMinutes(arr[1], "NS");
                     arr[0] = lat;
                     arr[1] = lng;
-                    ret.push(arr.join(","));
+                    ret.push(lat + "," + lng);
                 });
                 obj[e] = ret.join("\n");
                 continue;
